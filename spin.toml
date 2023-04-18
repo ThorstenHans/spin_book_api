@@ -1,0 +1,17 @@
+spin_manifest_version = "1"
+authors = ["Thorsten Hans <thorsten.hans@gmail.com>"]
+description = ""
+name = "book_api"
+trigger = { type = "http", base = "/" }
+version = "0.1.0"
+
+[[component]]
+id = "book-api"
+source = "target/wasm32-wasi/release/book_api.wasm"
+allowed_http_hosts = []
+key_value_stores=[ "default"]
+[component.trigger]
+route = "/..."
+[component.build]
+command = "cargo build --target wasm32-wasi --release"
+watch = ["src/**/*.rs", "Cargo.toml"]
